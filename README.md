@@ -1,8 +1,17 @@
-# vue-hackernews
+# Vue Hackernews
 
-> A Vue.js project
+仿写[Vue HackerNews](https://vue-hn.now.sh)，主要用于教学女盆友😉。
 
-## Build Setup
+## 配置Pug和Stylus
+
+```bash
+# 安装pug依赖，然后template的lang属性改为pug即可
+yarn add --dev pug
+# 安装stylus以及stylus-loader，然后style的lang属性改为stylus即可
+yarn add --dev stylus stylus-loader
+```
+
+## Setup
 
 ``` bash
 # install dependencies
@@ -17,5 +26,3 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
