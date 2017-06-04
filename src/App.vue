@@ -1,6 +1,6 @@
 <template lang="pug">
 #app
-  h1 Hello World
+  router-view
 </template>
 
 <script>
@@ -13,12 +13,12 @@ export default {
 }
 </script>
 
+<style src="normalize.css" />
 <style lang="stylus">
+body
+  background: #f2f3f5
 #app
-  font-family: "Avenir", Helvetica, Arial, sans-serif
+  font-family: Helvetica, Arial, sans-serif
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
-  text-align: center
-  color: #2c3e50
-  margin-top: 60px
 </style>
