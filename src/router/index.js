@@ -22,12 +22,6 @@ export default new Router({
         {
           path: "top",
           component: Top,
-          children: [
-            {
-              path: "dxj",
-              component: Job,
-            },
-          ],
         },
         {
           path: "new",
