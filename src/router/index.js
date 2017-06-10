@@ -19,13 +19,8 @@ export default new Router({
           path: "",
           redirect: "top",
         },
-        // TODO: 优化路由，限定`page`为数字
         {
-          path: "top/:page",
-          component: Top,
-        },
-        {
-          path: "top",
+          path: "top/:page?",
           component: Top,
         },
         {

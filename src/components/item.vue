@@ -2,26 +2,22 @@
   @Author: CJ Ting
   @Date:   2017-06-06 21:13:51
   @Last Modified by:   CJ Ting
-  @Last Modified time: 2017-06-10 16:47:22
+  @Last Modified time: 2017-06-10 18:31:56
 -->
 <template lang="pug">
 .item
-  div(v-if="!d")
-    p Loading...
-  template(v-else)
-    .item__score {{ d.score }}
-    .item__main
-      .item__title
-        a(:href="d.url", target="_blank") {{ d.title }}
-        span {{ d.id }}
-        span {{ d.url | getDomain }}
-      .item__meta
-        span by
-        a(:href="'/user/' + d.by") {{ d.by }}
-        span {{ d.time | timeAgo }}
-        template(v-if="d.descendants")
-          span |
-          a(:href="'/item/' + d.id") {{ d.descendants }} comments
+  .item__score {{ item.score }}
+  .item__main
+    .item__title
+      a(:href="item.url", target="_blank") {{ item.title }}
+      span {{ item.url | getDomain }}
+    .item__meta
+      span by
+      a(:href="'/user/' + item.by") {{ item.by }}
+      span {{ item.time | timeAgo }}
+      template(v-if="item.descendants")
+        span |
+        a(:href="'/item/' + item.id") {{ item.descendants }} comments
 </template>
 
 <script>
@@ -30,25 +26,15 @@ import axios from "axios"
 
 export default {
   props: {
-    id: {
-      type: Number,
+    item: {
+      type: Object,
       required: true,
     },
-  },
-  data() {
-    return {
-      d: null,
-    }
-  },
-  created: function() {
-    axios(`https://hacker-news.firebaseio.com/v0/item/${this.id}.json?print=pretty`)
-      .then(res => this.d = res.data)
   },
   filters: {
     getDomain(url) {
       if(!url) return
       return new URL(url).host
-      // return "(" + url.match(/https?:\/\/(.+?)\/?/)[1] + ")"
     },
     timeAgo(ts) {
       return timeago().format(ts * 1000)
