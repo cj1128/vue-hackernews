@@ -2,16 +2,23 @@
   @Author: CJ Ting
   @Date:   2017-06-04 19:11:55
   @Last Modified by:   CJ Ting
-  @Last Modified time: 2017-06-04 19:33:49
+  @Last Modified time: 2017-06-10 20:13:11
 -->
 <template lang="pug">
 .page-new
-  h1 New
+  items(
+    dataURL="https://hacker-news.firebaseio.com/v0/newstories.json",
+    path="/new"
+  )
 </template>
 
 <script>
-export default {
+import Items from "@/components/items"
+import { generatePageGuard } from "@/router"
 
+export default {
+  components: { Items, },
+  beforeRouteUpdate: generatePageGuard("/new"),
 }
 </script>
 

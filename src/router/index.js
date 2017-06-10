@@ -9,6 +9,22 @@ import Basic from "@/components/basic"
 
 Vue.use(Router)
 
+export function generatePageGuard(path) {
+  return function(to, from, next) {
+    if(to.path === path) {
+      next()
+      return
+    }
+
+    var page = to.params.page
+    if(!/^[1-9]\d*$/.test(page)) {
+      next(path + "/1")
+    } else {
+      next()
+    }
+  }
+}
+
 export default new Router({
   routes: [
     {
@@ -22,22 +38,27 @@ export default new Router({
         {
           path: "top/:page?",
           component: Top,
+          beforeEnter: generatePageGuard("/top"),
         },
         {
-          path: "new",
+          path: "new/:page?",
           component: New,
+          beforeEnter: generatePageGuard("/new"),
         },
         {
-          path: "show",
+          path: "show/:page?",
           component: Show,
+          beforeEnter: generatePageGuard("/show"),
         },
         {
-          path: "ask",
+          path: "ask/:page?",
           component: Ask,
+          beforeEnter: generatePageGuard("/ask"),
         },
         {
-          path: "jobs",
+          path: "job/:page?",
           component: Job,
+          beforeEnter: generatePageGuard("/job"),
         },
       ],
     },
