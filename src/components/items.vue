@@ -2,17 +2,17 @@
   @Author: CJ Ting
   @Date:   2017-06-10 19:41:46
   @Last Modified by:   CJ Ting
-  @Last Modified time: 2017-06-10 20:14:32
+  @Last Modified time: 2017-06-10 20:29:16
 -->
 <template lang="pug">
 .items
   _loading(v-if="!data")
   template(v-else)
     page-nav(
-      :currentPage="page"
-      :totalPage="totalPage"
-      :onPrev="prev"
-      :onNext="next"
+      :currentPage="page",
+      :totalPage="totalPage",
+      :onPrev="prev",
+      :onNext="next",
     )
     .items__items
       item(

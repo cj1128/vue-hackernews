@@ -2,18 +2,28 @@
   @Author: CJ Ting
   @Date:   2017-06-04 19:36:00
   @Last Modified by:   CJ Ting
-  @Last Modified time: 2017-06-10 16:54:59
+  @Last Modified time: 2017-06-10 20:26:51
 -->
 <template lang="pug">
 .basic
   header.site-header
     nav
       img(src="../assets/logo.png")
-      router-link(to="/top") Top
-      router-link(to="/new") New
-      router-link(to="/show") Show
-      router-link(to="/ask") Ask
-      router-link(to="/jobs") Jobs
+      router-link.nav__a(
+        to="/top",
+      ) Top
+      router-link.nav__a(
+        to="/new",
+      ) New
+      router-link.nav__a(
+        to="/show"
+      ) Show
+      router-link.nav__a(
+        to="/ask"
+      ) Ask
+      router-link.nav__a(
+        to="/job"
+      ) Jobs
       p Built by CJ
   .main
     router-view
@@ -21,7 +31,6 @@
 
 <script>
 export default {
-
 }
 </script>
 
@@ -45,18 +54,16 @@ export default {
     > img
       width: 24px
       margin-right: 30px
-    > a
-      text-decoration: none
-      margin-right: 30px
-      font-weight: 500
-      color: white
     > p
       margin-left: auto
-
-.page-nav
-  padding: 15px 30px
-  box-shadow: 0 1px 2px rgba(0,0,0,.1)
-  background: white
+.nav__a
+  text-decoration: none
+  margin-right: 30px
+  font-weight: 500
+  color: hsla(0,0%,100%,.8)
+.nav__a.router-link-active
+  color: white
+  font-weight: bold
 
 .main
   flex: 1

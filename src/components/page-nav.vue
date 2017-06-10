@@ -2,7 +2,7 @@
   @Author: CJ Ting
   @Date:   2017-06-10 16:48:39
   @Last Modified by:   CJ Ting
-  @Last Modified time: 2017-06-10 17:10:10
+  @Last Modified time: 2017-06-10 20:27:52
 -->
 <template lang="pug">
 .page-nav
@@ -53,6 +53,8 @@ export default {
   display: flex
   align-items: center
   color: #34495e
+  padding: 10px 0
+  background-color: white
 
 .page-nav__btn
   cursor: pointer
