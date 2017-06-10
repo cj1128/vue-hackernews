@@ -2,7 +2,7 @@
   @Author: CJ Ting
   @Date:   2017-06-04 19:36:00
   @Last Modified by:   CJ Ting
-  @Last Modified time: 2017-06-04 20:08:42
+  @Last Modified time: 2017-06-10 16:54:59
 -->
 <template lang="pug">
 .basic
@@ -15,10 +15,8 @@
       router-link(to="/ask") Ask
       router-link(to="/jobs") Jobs
       p Built by CJ
-  .page-nav To be implemented
   .main
-    .container
-      router-view
+    router-view
 </template>
 
 <script>
@@ -63,12 +61,4 @@ export default {
 .main
   flex: 1
   overflow: auto
-  padding: 20px 0
-
-.container
-  max-width: 800px
-  margin: auto
-  background: white
-  padding: 20px
-  border-radius: 5px
 </style>

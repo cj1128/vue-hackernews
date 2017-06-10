@@ -2,7 +2,7 @@
   @Author: CJ Ting
   @Date:   2017-06-06 21:13:51
   @Last Modified by:   CJ Ting
-  @Last Modified time: 2017-06-06 22:03:15
+  @Last Modified time: 2017-06-10 16:47:22
 -->
 <template lang="pug">
 .item
@@ -13,6 +13,7 @@
     .item__main
       .item__title
         a(:href="d.url", target="_blank") {{ d.title }}
+        span {{ d.id }}
         span {{ d.url | getDomain }}
       .item__meta
         span by
@@ -46,7 +47,8 @@ export default {
   filters: {
     getDomain(url) {
       if(!url) return
-      return "(" + url.match(/https?:\/\/(.+?)\//)[1] + ")"
+      return new URL(url).host
+      // return "(" + url.match(/https?:\/\/(.+?)\/?/)[1] + ")"
     },
     timeAgo(ts) {
       return timeago().format(ts * 1000)
