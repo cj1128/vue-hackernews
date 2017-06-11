@@ -1,0 +1,75 @@
+<!--
+  @Author: CJ Ting
+  @Date:   2017-06-11 19:39:06
+  @Last Modified by:   CJ Ting
+  @Last Modified time: 2017-06-11 19:46:49
+-->
+<template lang="pug">
+._animation-loading
+  ._animation-loading__spinner
+    ._animation-loading__cube1
+    ._animation-loading__cube2
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+._animation-loading__spinner {
+  margin: 20px auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+._animation-loading__cube1, ._animation-loading__cube2 {
+  background-color: #f60;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  -webkit-animation: sk-cubemove 1.8s infinite ease-in-out;
+  animation: sk-cubemove 1.8s infinite ease-in-out;
+}
+
+._animation-loading__cube2 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+@-webkit-keyframes sk-cubemove {
+  25% { -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5) }
+  50% { -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg) }
+  75% { -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5) }
+  100% { -webkit-transform: rotate(-360deg) }
+}
+
+@keyframes sk-cubemove {
+  25% {
+    transform: translateX(42px) rotate(-90deg) scale(0.5);
+    -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5);
+  } 50% {
+    transform: translateX(42px) translateY(42px) rotate(-179deg);
+    -webkit-transform: translateX(42px) translateY(42px) rotate(-179deg);
+  } 50.1% {
+    transform: translateX(42px) translateY(42px) rotate(-180deg);
+    -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg);
+  } 75% {
+    transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+    -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+  } 100% {
+    transform: rotate(-360deg);
+    -webkit-transform: rotate(-360deg);
+  }
+}
+</style>
+
+<style lang="stylus">
+._animation-loading
+  padding: 5px 0
+</style>

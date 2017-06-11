@@ -2,32 +2,29 @@
   @Author: CJ Ting
   @Date:   2017-06-11 17:45:46
   @Last Modified by:   CJ Ting
-  @Last Modified time: 2017-06-11 18:55:28
+  @Last Modified time: 2017-06-11 19:52:48
 -->
 <template lang="pug">
 .comment
-  template(v-if="item")
-    .comment__header
-      router-link(:to="'/user/' + item.by") {{ item.by }}
-      span {{ item.time | timeAgo }}
-    .comment__text(v-html="item.text")
-    .comment__children(
-      v-if="item.kids",
+  .comment__header
+    router-link(:to="'/user/' + item.by") {{ item.by }}
+    span {{ item.time | timeAgo }}
+  .comment__text(v-html="item.text")
+  .comment__children(
+    v-if="item.children.length > 0",
+  )
+    .comment__children__info(
+      v-if="collapsed"
+      @click="collapsed = false"
     )
-      .comment__children__info(
-        v-if="collapsed"
-        @click="collapsed = false"
+      | [+] {{ childrenLength }} {{ childrenLength === 1 ? 'reply' : 'replies' }} collapsed
+    div(v-show="!collapsed")
+      .comment__children__toggle(@click="collapsed = true") [-]
+      comment(
+        v-for="comment in item.children",
+        :item="comment"
+        :key="comment.id",
       )
-        | [+] {{ childrenLength }} {{ childrenLength === 1 ? 'reply' : 'replies' }} collapsed
-      template(v-else)
-        .comment__children__toggle(@click="collapsed = true") [-]
-        comment(
-          v-for="id in item.kids",
-          :id="id",
-          :key="id",
-          :level="level + 1",
-        )
-  _loading(v-else)
 </template>
 
 <script>
@@ -36,31 +33,20 @@ import axios from "axios"
 export default {
   name: "comment",
   props: {
-    id: {
-      type: Number,
+    item: {
+      type: Object,
       required: true,
     },
-    level: {
-      type: Number,
-      required: true,
-    }
   },
   data() {
     return {
-      item: null,
       collapsed: false,
     }
   },
   computed: {
     childrenLength() {
-      return this.item.kids.length
+      return this.item.children.length
     },
-  },
-  created() {
-    axios.get(`https://hacker-news.firebaseio.com/v0/item/${this.id}.json`)
-      .then(res => {
-        this.item = res.data
-      })
   },
 }
 </script>
