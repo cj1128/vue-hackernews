@@ -2,7 +2,7 @@
   @Author: CJ Ting
   @Date:   2017-06-11 17:04:32
   @Last Modified by:   CJ Ting
-  @Last Modified time: 2017-06-11 18:10:32
+  @Last Modified time: 2017-06-11 18:57:00
 -->
 <template lang="pug">
 .item
@@ -19,7 +19,12 @@
     .item__comments
       .item__comments__header
         | {{ item.descendants }} comments
-      comment(v-for="id in item.kids", :id="id", :key="id")
+      comment(
+        v-for="id in item.kids",
+        :id="id",
+        :key="id",
+        :level="1",
+      )
   _loading(v-else)
 </template>
 
@@ -37,6 +42,7 @@ export default {
     var itemID = this.$route.params.id
     axios.get(`https://hacker-news.firebaseio.com/v0/item/${itemID}.json`)
       .then(res => {
+        // res.data.kids = res.data.kids.slice(0, 1)
         this.item = res.data
       })
   },

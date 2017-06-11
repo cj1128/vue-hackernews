@@ -2,7 +2,7 @@
   @Author: CJ Ting
   @Date:   2017-06-11 17:45:46
   @Last Modified by:   CJ Ting
-  @Last Modified time: 2017-06-11 18:03:58
+  @Last Modified time: 2017-06-11 18:55:28
 -->
 <template lang="pug">
 .comment
@@ -11,6 +11,22 @@
       router-link(:to="'/user/' + item.by") {{ item.by }}
       span {{ item.time | timeAgo }}
     .comment__text(v-html="item.text")
+    .comment__children(
+      v-if="item.kids",
+    )
+      .comment__children__info(
+        v-if="collapsed"
+        @click="collapsed = false"
+      )
+        | [+] {{ childrenLength }} {{ childrenLength === 1 ? 'reply' : 'replies' }} collapsed
+      template(v-else)
+        .comment__children__toggle(@click="collapsed = true") [-]
+        comment(
+          v-for="id in item.kids",
+          :id="id",
+          :key="id",
+          :level="level + 1",
+        )
   _loading(v-else)
 </template>
 
@@ -18,16 +34,27 @@
 import axios from "axios"
 
 export default {
+  name: "comment",
   props: {
     id: {
       type: Number,
       required: true,
     },
+    level: {
+      type: Number,
+      required: true,
+    }
   },
   data() {
     return {
       item: null,
+      collapsed: false,
     }
+  },
+  computed: {
+    childrenLength() {
+      return this.item.kids.length
+    },
   },
   created() {
     axios.get(`https://hacker-news.firebaseio.com/v0/item/${this.id}.json`)
@@ -59,4 +86,22 @@ export default {
   line-height: 1.4em
   overflow-wrap: break-word
   font-size: 0.95rem
+  margin-bottom: 10px
+
+.comment__children
+  padding-left: 20px
+
+.comment__children__info
+  background-color: #fff4dc
+  color: #828282
+  cursor: pointer
+  font-size: 0.9rem
+  padding: 3px
+
+.comment__children__toggle
+  position: relative
+  left: -20px
+  top: 8px
+  color: #828282
+  cursor: pointer
 </style>
