@@ -2,7 +2,7 @@
   @Author: CJ Ting
   @Date:   2017-06-10 19:41:46
   @Last Modified by:   CJ Ting
-  @Last Modified time: 2017-06-10 20:29:16
+  @Last Modified time: 2017-06-11 17:03:46
 -->
 <template lang="pug">
 .items
@@ -15,7 +15,7 @@
       :onNext="next",
     )
     .items__items
-      item(
+      list-item(
         v-for="item in items",
         :key="item.id",
         :item="item",
@@ -25,7 +25,7 @@
 
 <script>
 import axios from "axios"
-import Item from "@/components/item"
+import ListItem from "@/components/list-item"
 import PageNav from "@/components/page-nav"
 
 export default {
@@ -85,7 +85,7 @@ export default {
       this.fetchItems()
     },
   },
-  components: { Item, PageNav },
+  components: { ListItem, PageNav },
 }
 </script>
 

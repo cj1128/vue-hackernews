@@ -6,6 +6,7 @@ import Show from "@/components/show"
 import Ask from "@/components/ask"
 import Job from "@/components/job"
 import Basic from "@/components/basic"
+import Item from "@/components/item"
 
 Vue.use(Router)
 
@@ -60,6 +61,10 @@ export default new Router({
           component: Job,
           beforeEnter: generatePageGuard("/job"),
         },
+        {
+          path: "item/:id",
+          component: Item,
+        }
       ],
     },
   ]

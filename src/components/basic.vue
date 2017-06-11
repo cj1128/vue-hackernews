@@ -2,7 +2,7 @@
   @Author: CJ Ting
   @Date:   2017-06-04 19:36:00
   @Last Modified by:   CJ Ting
-  @Last Modified time: 2017-06-10 20:26:51
+  @Last Modified time: 2017-06-11 17:30:25
 -->
 <template lang="pug">
 .basic
@@ -61,6 +61,9 @@ export default {
   margin-right: 30px
   font-weight: 500
   color: hsla(0,0%,100%,.8)
+  &:hover
+    color: white
+    font-weight: bold
 .nav__a.router-link-active
   color: white
   font-weight: bold

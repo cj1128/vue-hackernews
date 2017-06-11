@@ -1,83 +1,94 @@
 <!--
   @Author: CJ Ting
-  @Date:   2017-06-06 21:13:51
+  @Date:   2017-06-11 17:04:32
   @Last Modified by:   CJ Ting
-  @Last Modified time: 2017-06-10 18:31:56
+  @Last Modified time: 2017-06-11 18:10:32
 -->
 <template lang="pug">
 .item
-  .item__score {{ item.score }}
-  .item__main
-    .item__title
-      a(:href="item.url", target="_blank") {{ item.title }}
-      span {{ item.url | getDomain }}
-    .item__meta
-      span by
-      a(:href="'/user/' + item.by") {{ item.by }}
-      span {{ item.time | timeAgo }}
-      template(v-if="item.descendants")
-        span |
-        a(:href="'/item/' + item.id") {{ item.descendants }} comments
+  template(v-if="item")
+    .item__header
+        .item__header__title
+          a(:href="item.url", target="_blank") {{ item.title }}
+          span {{ item.url | getDomain }}
+        .item__header__meta
+          span {{ item.score }} points
+          span | by
+          router-link(:to="'/user/' + item.by") {{ item.by }}
+          span {{ item.time | timeAgo }}
+    .item__comments
+      .item__comments__header
+        | {{ item.descendants }} comments
+      comment(v-for="id in item.kids", :id="id", :key="id")
+  _loading(v-else)
 </template>
 
 <script>
-import timeago from "timeago.js"
 import axios from "axios"
+import Comment from "@/components/comment"
 
 export default {
-  props: {
-    item: {
-      type: Object,
-      required: true,
-    },
+  data() {
+    return {
+      item: null,
+    }
   },
-  filters: {
-    getDomain(url) {
-      if(!url) return
-      return new URL(url).host
-    },
-    timeAgo(ts) {
-      return timeago().format(ts * 1000)
-    },
+  created() {
+    var itemID = this.$route.params.id
+    axios.get(`https://hacker-news.firebaseio.com/v0/item/${itemID}.json`)
+      .then(res => {
+        this.item = res.data
+      })
   },
+  components: { Comment, },
 }
 </script>
 
 <style lang="stylus">
 .item
+  width: 80%
+  max-width: 800px
+  margin: auto
+  > ._loading
+    margin: 100px 0
+    text-align: center
+
+.item__header
+  background-color: white
+  margin-bottom: 20px
+  padding: 30px 20px
+  box-shadow: 0 1px 2px rgba(0,0,0,.1)
+
+.item__header__title
   display: flex
   align-items: center
-  padding: 20px 0
-  border-bottom: 1px solid #eee
-
-.item__score
-  color: #f60
-  font-size: 1.1em
-  font-weight: 700
-  margin-right: 20px
-  width: 50px
-
-.item__main
-  flex: 1
-
-.item__title
-  line-height: 1.8rem
   > a
+    font-size: 1.5rem
     color: #34495e
     text-decoration: none
+    margin-right: 20px
+    font-weight: bold
   > span
-    padding-left: 10px
     color: #828282
-    font-size: 0.8rem
 
-.item__meta
+.item__header__meta
+  display: flex
+  align-items: center
   color: #828282
-  font-size: 0.9rem
+  margin-top: 15px
+  > *
+    margin-right: 8px
   > a
+    text-decoration: underline
     color: #828282
-    margin-right: 10px
-    &:hover
-      color: #f60
-  > span
-    margin-right: 10px
+
+.item__comments
+  background-color: white
+  box-shadow: 0 1px 2px rgba(0,0,0,.1)
+  padding: 0 20px
+
+.item__comments__header
+  padding: 15px 0
+  color: #34495e
+  font-size: 1.2rem
 </style>
