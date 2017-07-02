@@ -1,8 +1,8 @@
 <!--
   @Author: CJ Ting
   @Date:   2017-06-06 21:13:51
-  @Last Modified by:   CJ Ting
-  @Last Modified time: 2017-06-11 17:34:24
+  @Last Modified by:   dingdingbai
+  @Last Modified time: 2017-07-02 12:33:59
 -->
 <template lang="pug">
 .list__item
@@ -14,7 +14,7 @@
       span {{ item.url | getDomain }}
     .list__item__meta
       span by
-      a(:href="'/user/' + item.by") {{ item.by }}
+      router-link(:to="'/user/' + item.by") {{ item.by }}
       span {{ item.time | timeAgo }}
       template(v-if="item.descendants")
         span |

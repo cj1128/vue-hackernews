@@ -7,6 +7,7 @@ import Ask from "@/components/ask"
 import Job from "@/components/job"
 import Basic from "@/components/basic"
 import Item from "@/components/item"
+import User from "@/components/user"
 
 Vue.use(Router)
 
@@ -64,7 +65,11 @@ export default new Router({
         {
           path: "item/:id",
           component: Item,
-        }
+        },
+        {
+          path: "user/:user",
+          component: User,
+        },
       ],
     },
   ]
