@@ -2,7 +2,7 @@
   @Author: CJ Ting
   @Date:   2017-06-04 19:36:00
   @Last Modified by:   dingdingbai
-  @Last Modified time: 2017-07-02 16:05:36
+  @Last Modified time: 2017-07-02 16:10:42
 -->
 <template lang="pug">
 .basic
@@ -24,7 +24,7 @@
       router-link.nav__a(
         to="/job"
       ) Jobs
-      p Built by CJ
+      p 😘&nbsp;&nbsp;built for BY
   .main
     router-view
 </template>
@@ -56,6 +56,9 @@ export default {
       margin-right: 30px
     > p
       margin-left: auto
+      font-size: 0.9em
+      color: #f5e7e7
+
 .nav__a
   text-decoration: none
   margin-right: 30px
