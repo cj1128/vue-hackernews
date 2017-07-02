@@ -1,8 +1,8 @@
 <!--
   @Author: CJ Ting
   @Date:   2017-06-11 17:04:32
-  @Last Modified by:   CJ Ting
-  @Last Modified time: 2017-06-11 19:47:55
+  @Last Modified by:   dingdingbai
+  @Last Modified time: 2017-07-02 12:11:25
 -->
 <template lang="pug">
 .item
@@ -11,6 +11,8 @@
         .item__header__title
           a(:href="item.url", target="_blank") {{ item.title }}
           span {{ item.url | getDomain }}
+          //- TODO: delete debug info
+          span {{ item.id }}
         .item__header__meta
           span {{ item.score }} points
           span | by
@@ -22,6 +24,7 @@
       template(v-if="comments")
         comment(
           v-for="comment in comments",
+          v-if="!comment.deleted"
           :item="comment"
           :key="comment.id",
         )
@@ -46,32 +49,56 @@ export default {
         return
       }
 
-      var f = ids => {
-        var result = {}
-        return Promise.all(ids.map(id => this.fetchComment(id).then(res => {
+      // f函数会递归抓取评论数据，返回如下的数据结构(Promise)
+      // [
+      //   {
+      //     by: "a",
+      //     id: 14680711,
+      //     text: "",
+      //     time: 1498966006,
+      //     deleted: false,
+      //     children: [
+      //       {
+      //         by: "a",
+      //         id: 14680711,
+      //         text: "",
+      //         time: 1498966006,
+      //         deleted: false,
+      //       },
+      //     ],
+      //   }
+      // ]
+      const f = ids => {
+        let comments = ids.map(id => {
+          let result = {}
+          return this.fetchComment(id).then(res => {
             result.by = res.data.by
             result.time = res.data.time
             result.text = res.data.text
             result.id = res.data.id
-          if(res.data.kids == null) {
-            return Promise.resolve([])
-          } else {
-            return f(res.data.kids)
-          }
-        }).then(children => {
-          result.children = children
-          return Promise.resolve(result)
-        })))
+            result.deleted = res.data.deleted || false
+            if(res.data.kids == null) {
+              return Promise.resolve([])
+            } else {
+              return f(res.data.kids)
+            }
+          }).then(children => {
+            result.children = children
+            return Promise.resolve(result)
+          })
+        })
+
+        return Promise.all(comments)
       }
 
       f(this.item.kids).then(d => {
-        console.log(d)
+        console.log(JSON.parse(JSON.stringify(d)))
         this.comments = d
       })
     },
     fetchComment(id) {
       return axios.get(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
-  },
+    },
   },
   created() {
     var itemID = this.$route.params.id

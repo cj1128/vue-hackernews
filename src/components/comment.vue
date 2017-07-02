@@ -1,8 +1,8 @@
 <!--
   @Author: CJ Ting
   @Date:   2017-06-11 17:45:46
-  @Last Modified by:   CJ Ting
-  @Last Modified time: 2017-06-11 19:52:48
+  @Last Modified by:   dingdingbai
+  @Last Modified time: 2017-07-02 12:11:23
 -->
 <template lang="pug">
 .comment
@@ -28,6 +28,9 @@
 </template>
 
 <script>
+// 如果comment的`deleted`属性为真，表示这个评论被删除了
+// 那么我们直接不予显示
+
 import axios from "axios"
 
 export default {
