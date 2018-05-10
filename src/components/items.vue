@@ -1,9 +1,3 @@
-<!--
-  @Author: CJ Ting
-  @Date:   2017-06-10 19:41:46
-  @Last Modified by:   CJ Ting
-  @Last Modified time: 2017-06-11 17:03:46
--->
 <template lang="pug">
 .items
   _loading(v-if="!data")
@@ -96,10 +90,12 @@ export default {
     text-align: center
     font-size: 1.5rem
     color: #aaa
+
 .items__items
   max-width: 800px
   margin: auto
   margin-top: 20px
+  margin-bottom: 30px
   background: white
   padding: 20px
   border-radius: 5px

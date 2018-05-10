@@ -1,9 +1,3 @@
-<!--
-  @Author: CJ Ting
-  @Date:   2017-06-06 21:13:51
-  @Last Modified by:   dingdingbai
-  @Last Modified time: 2017-07-02 12:33:59
--->
 <template lang="pug">
 .list__item
   .list__item__score {{ item.score }}

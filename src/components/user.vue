@@ -1,9 +1,3 @@
-<!--
-  @Author: dingdingbai
-  @Date:   2017-07-02 12:31:48
-  @Last Modified by:   dingdingbai
-  @Last Modified time: 2017-07-02 16:03:46
--->
 <template lang="pug">
 .page-user
   template(v-if="user")

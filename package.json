@@ -1,12 +1,11 @@
 {
   "name": "vue-hackernews",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "A hacker news client built in Vue",
   "author": "CJ Ting <fatelovely1128@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
-    "start": "node build/dev-server.js",
     "build": "node build/build.js"
   },
   "dependencies": {

@@ -1,9 +1,3 @@
-<!--
-  @Author: CJ Ting
-  @Date:   2017-06-11 19:39:06
-  @Last Modified by:   CJ Ting
-  @Last Modified time: 2017-06-11 19:46:49
--->
 <template lang="pug">
 ._animation-loading
   ._animation-loading__spinner

@@ -1,10 +1,16 @@
-# Vue Hackernews
+# [Vue Hackernews](http://cjting.me/vue-hackernews)
 
-仿写[Vue HackerNews](https://vue-hn.now.sh)，主要用于教学女盆友😉。
+使用Vue构建的Hacker News客户端，主要用于教学女盆友😉。
 
-## Setup
+<div align="center">
+  <img src="http://ww1.sinaimg.cn/large/9b85365dgy1fr64swd3wgj20tg0pljve">
+</div>
+
+## Development
 
 ``` bash
-yarn # 推荐使用yarn
-yarn run dev
+git clone https://github.com/fate-lovely/vue-hackernews.git
+cd vue-hackernews
+yarn
+yarn dev
 ```

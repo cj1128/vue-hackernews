@@ -1,9 +1,3 @@
-<!--
-  @Author: CJ Ting
-  @Date:   2017-06-11 17:45:46
-  @Last Modified by:   dingdingbai
-  @Last Modified time: 2017-07-02 12:11:23
--->
 <template lang="pug">
 .comment
   .comment__header

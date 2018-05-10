@@ -1,9 +1,3 @@
-<!--
-  @Author: CJ Ting
-  @Date:   2017-06-11 17:04:32
-  @Last Modified by:   dingdingbai
-  @Last Modified time: 2017-07-02 12:11:25
--->
 <template lang="pug">
 .item
   template(v-if="item")
@@ -92,7 +86,6 @@ export default {
       }
 
       f(this.item.kids).then(d => {
-        console.log(JSON.parse(JSON.stringify(d)))
         this.comments = d
       })
     },

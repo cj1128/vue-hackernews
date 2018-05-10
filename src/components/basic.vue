@@ -1,9 +1,3 @@
-<!--
-  @Author: CJ Ting
-  @Date:   2017-06-04 19:36:00
-  @Last Modified by:   dingdingbai
-  @Last Modified time: 2017-07-02 16:10:42
--->
 <template lang="pug">
 .basic
   header.site-header
