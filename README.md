@@ -3,7 +3,7 @@
 使用Vue构建的Hacker News客户端，主要用于教学女盆友😉。
 
 <div align="center">
-  <img src="http://ww1.sinaimg.cn/large/9b85365dgy1fr64swd3wgj20tg0pljve">
+  <img width="600px" src="http://ww1.sinaimg.cn/large/9b85365dgy1fr64swd3wgj20tg0pljve">
 </div>
 
 ## Development
